@@ -33,10 +33,13 @@ var _axios2 = _interopRequireDefault(_axios);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Http = function () {
-  function Http() {
-    var conf = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { errno: 'errno', errmsg: 'errmsg', token: 'token', data: 'data' };
-    var hosts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  function Http(_ref) {
+    var _ref$conf = _ref.conf,
+        conf = _ref$conf === undefined ? {} : _ref$conf,
+        _ref$format = _ref.format,
+        format = _ref$format === undefined ? { errno: 'errno', errmsg: 'errmsg', token: 'token', data: 'data' } : _ref$format,
+        _ref$hosts = _ref.hosts,
+        hosts = _ref$hosts === undefined ? {} : _ref$hosts;
     (0, _classCallCheck3.default)(this, Http);
 
     var dfConf = {
@@ -131,7 +134,7 @@ var Http = function () {
   };
 
   Http.prototype.get = function () {
-    var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(url) {
+    var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(url) {
       var opt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var conf = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
       var res;
@@ -174,15 +177,15 @@ var Http = function () {
       }, _callee, this, [[1, 7]]);
     }));
 
-    function get(_x7) {
-      return _ref.apply(this, arguments);
+    function get(_x4) {
+      return _ref2.apply(this, arguments);
     }
 
     return get;
   }();
 
   Http.prototype.post = function () {
-    var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2(url) {
+    var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2(url) {
       var opt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var conf = arguments[2];
       var res;
@@ -225,8 +228,8 @@ var Http = function () {
       }, _callee2, this, [[1, 7]]);
     }));
 
-    function post(_x10) {
-      return _ref2.apply(this, arguments);
+    function post(_x7) {
+      return _ref3.apply(this, arguments);
     }
 
     return post;

@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 class Http {
-  constructor(conf = {}, format = { errno: 'errno', errmsg: 'errmsg', token: 'token', data: 'data' }, hosts = {}) {
+  constructor({ conf = {}, format = { errno: 'errno', errmsg: 'errmsg', token: 'token', data: 'data' }, hosts = {} }) {
     const dfConf = {
       timeout: 30000,
       responseType: 'json',

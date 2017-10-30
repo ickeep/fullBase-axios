@@ -1,11 +1,8 @@
 {
-  "name": "fullBase-axios",
+  "name": "fullbase-axios",
   "description": "fullBase-axios",
-  "version": "0.1.0",
-  "author": {
-    "name": "icKeep",
-    "email": "i@ickeep.com"
-  },
+  "version": "0.1.01",
+  "author": "icKeep <i@ickeep.com>",
   "main": "dist.js",
   "scripts": {
     "dist": "babel index.js --out-file dist.js"
@@ -24,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ickeep/fullBase-axios"
+    "url": "git+https://github.com/ickeep/fullBase-axios.git"
   },
   "bugs": {
     "url": "https://github.com/ickeep/fullBase-axios/issues"
@@ -32,5 +29,11 @@
   "engines": {
     "node": ">=6.0.0"
   },
-  "readmeFilename": "README.md"
+  "homepage": "https://github.com/ickeep/fullBase-axios#readme",
+  "keywords": [
+    "axios",
+    "full",
+    "base",
+    "fullbase"
+  ]
 }
