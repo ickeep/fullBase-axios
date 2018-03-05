@@ -8,14 +8,5 @@
     ],
     "stage-1"
   ],
-  "plugins": [
-    [
-      "transform-runtime",
-      {
-        "polyfill": true,
-        "regenerator": true
-      }
-    ]
-  ],
   "sourceMaps": true
 }

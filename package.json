@@ -8,7 +8,7 @@
     "dist": "babel index.js --out-file dist.js"
   },
   "dependencies": {
-    "axios": "^0.17.0"
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

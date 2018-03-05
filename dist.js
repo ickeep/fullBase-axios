@@ -2,35 +2,17 @@
 
 exports.__esModule = true;
 
-var _regenerator = require('babel-runtime/regenerator');
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
-var _keys = require('babel-runtime/core-js/object/keys');
-
-var _keys2 = _interopRequireDefault(_keys);
-
-var _typeof2 = require('babel-runtime/helpers/typeof');
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-var _assign = require('babel-runtime/core-js/object/assign');
-
-var _assign2 = _interopRequireDefault(_assign);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _axios = require('axios');
 
 var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Http = function () {
   function Http(_ref) {
@@ -40,7 +22,8 @@ var Http = function () {
         format = _ref$format === undefined ? { errno: 'errno', errmsg: 'errmsg', token: 'token', data: 'data' } : _ref$format,
         _ref$hosts = _ref.hosts,
         hosts = _ref$hosts === undefined ? {} : _ref$hosts;
-    (0, _classCallCheck3.default)(this, Http);
+
+    _classCallCheck(this, Http);
 
     var dfConf = {
       timeout: 30000,
@@ -48,7 +31,7 @@ var Http = function () {
       headers: { 'X-Requested-With': 'XMLHttpRequest' }
     };
 
-    this.conf = (0, _assign2.default)(dfConf, conf);
+    this.conf = Object.assign(dfConf, conf);
     this.hosts = hosts;
     this.format = format;
     this.dataDf = {};
@@ -63,7 +46,7 @@ var Http = function () {
       try {
         data = JSON.parse(data);
       } catch (e) {
-        data = (0, _assign2.default)({}, this.dataDf);
+        data = Object.assign({}, this.dataDf);
       }
     }
     return data;
@@ -73,8 +56,8 @@ var Http = function () {
     var apart = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '?';
 
     var urlText = '';
-    if ((typeof query === 'undefined' ? 'undefined' : (0, _typeof3.default)(query)) === 'object') {
-      (0, _keys2.default)(query).forEach(function (key) {
+    if ((typeof query === 'undefined' ? 'undefined' : _typeof(query)) === 'object') {
+      Object.keys(query).forEach(function (key) {
         if (typeof query[key] !== 'undefined' && query[key] !== 'undefined' && query[key] !== '') {
           if (apart === '?') {
             urlText += '&' + key + '=' + query[key];
@@ -91,7 +74,7 @@ var Http = function () {
     var opt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var apart = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '?';
 
-    var hostKeys = (0, _keys2.default)(this.hosts);
+    var hostKeys = Object.keys(this.hosts);
     var newUrl = url;
     for (var i = 0; i < hostKeys.length; i += 1) {
       var tmpKey = hostKeys[i];
@@ -109,7 +92,7 @@ var Http = function () {
     var tmpData = {};
     tmpData[this.format.errno] = 600;
     tmpData[this.format.errmsg] = e.message;
-    return (0, _assign2.default)(this.dataDf, tmpData);
+    return Object.assign(this.dataDf, tmpData);
   };
 
   Http.prototype.resultHandle = function resultHandle(res) {
@@ -130,15 +113,15 @@ var Http = function () {
     if (token) {
       tmpData[tokenKey] = token;
     }
-    return (0, _assign2.default)(this.dataDf, tmpData);
+    return Object.assign(this.dataDf, tmpData);
   };
 
   Http.prototype.get = function () {
-    var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(url) {
+    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(url) {
       var opt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var conf = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
       var res;
-      return _regenerator2.default.wrap(function _callee$(_context) {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -185,11 +168,11 @@ var Http = function () {
   }();
 
   Http.prototype.post = function () {
-    var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2(url) {
+    var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(url) {
       var opt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var conf = arguments[2];
       var res;
-      return _regenerator2.default.wrap(function _callee2$(_context2) {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
