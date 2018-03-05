@@ -1,14 +1,14 @@
 {
   "name": "fullbase-axios",
   "description": "fullBase-axios",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "icKeep <i@ickeep.com>",
   "main": "dist.js",
   "scripts": {
     "dist": "babel index.js --out-file dist.js"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.17.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
