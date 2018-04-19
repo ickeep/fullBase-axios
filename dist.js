@@ -82,7 +82,8 @@ var Http = function () {
     var urlText = '';
     if ((typeof query === 'undefined' ? 'undefined' : (0, _typeof3.default)(query)) === 'object') {
       (0, _keys2.default)(query).forEach(function (key) {
-        var value = query[key](_this.trim && typeof value.trim === 'function') ? value = value.trim() : '';
+        var value = query[key];
+        _this.trim && value && typeof value.trim === 'function' ? value = value.trim() : '';
         if (typeof value !== 'undefined' && value !== 'undefined' && value !== '') {
           if (apart === '?') {
             urlText += '&' + key + '=' + value;
@@ -157,27 +158,29 @@ var Http = function () {
 
             case 4:
               res = _context.sent;
-              _context.next = 12;
+              _context.next = 13;
               break;
 
             case 7:
               _context.prev = 7;
               _context.t0 = _context['catch'](1);
 
+              console.log(_context.t0);
+
               if (_context.t0.response) {
-                _context.next = 11;
+                _context.next = 12;
                 break;
               }
 
               return _context.abrupt('return', this.errHandle(_context.t0));
 
-            case 11:
+            case 12:
               res = _context.t0.response;
 
-            case 12:
+            case 13:
               return _context.abrupt('return', this.resultHandle(res));
 
-            case 13:
+            case 14:
             case 'end':
               return _context.stop();
           }
@@ -206,7 +209,7 @@ var Http = function () {
               if (this.trim) {
                 (0, _keys2.default)(opt).forEach(function (key) {
                   var value = opt[key];
-                  opt[key] = typeof value.trim === 'function' ? value.trim() : value;
+                  typeof value.trim === 'function' ? opt[key] = value.trim() : '';
                 });
               }
               _context2.prev = 2;
@@ -215,27 +218,29 @@ var Http = function () {
 
             case 5:
               res = _context2.sent;
-              _context2.next = 13;
+              _context2.next = 14;
               break;
 
             case 8:
               _context2.prev = 8;
               _context2.t0 = _context2['catch'](2);
 
+              console.log(_context2.t0);
+
               if (_context2.t0.response) {
-                _context2.next = 12;
+                _context2.next = 13;
                 break;
               }
 
               return _context2.abrupt('return', this.errHandle(_context2.t0));
 
-            case 12:
+            case 13:
               res = _context2.t0.response;
 
-            case 13:
+            case 14:
               return _context2.abrupt('return', this.resultHandle(res));
 
-            case 14:
+            case 15:
             case 'end':
               return _context2.stop();
           }

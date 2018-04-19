@@ -40,7 +40,7 @@ class Http {
     if (typeof query === 'object') {
       Object.keys(query).forEach((key) => {
         let value = query[key]
-        (this.trim && typeof value.trim === 'function') ? value = value.trim() : ''
+        this.trim && value && typeof value.trim === 'function' ? value = value.trim() : ''
         if (typeof value !== 'undefined' && value !== 'undefined' && value !== '') {
           if (apart === '?') {
             urlText += `&${key}=${value}`
@@ -101,6 +101,7 @@ class Http {
     try {
       res = await this.axios.get(this.processUrl(url, opt), conf)
     } catch (e) {
+      console.log(e);
       if (!e.response) {
         return this.errHandle(e)
       }
@@ -114,12 +115,13 @@ class Http {
     if (this.trim) {
       Object.keys(opt).forEach((key) => {
         let value = opt[key]
-        opt[key] = typeof value.trim === 'function' ? value.trim() : value
+        typeof value.trim === 'function' ? opt[key] = value.trim() : ''
       })
     }
     try {
       res = await this.axios.post(this.processUrl(url), opt, conf)
     } catch (e) {
+      console.log(e);
       if (!e.response) {
         return this.errHandle(e)
       }
