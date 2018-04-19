@@ -114,6 +114,16 @@ var Http = function () {
     return newUrl;
   };
 
+  Http.prototype.trimHandle = function trimHandle() {
+    var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    (0, _keys2.default)(opt).forEach(function (key) {
+      var value = opt[key];
+      typeof value.trim === 'function' ? opt[key] = value.trim() : '';
+    });
+    return opt;
+  };
+
   Http.prototype.errHandle = function errHandle(e) {
     var tmpData = {};
     tmpData[this.format.errno] = 600;
@@ -158,29 +168,27 @@ var Http = function () {
 
             case 4:
               res = _context.sent;
-              _context.next = 13;
+              _context.next = 12;
               break;
 
             case 7:
               _context.prev = 7;
               _context.t0 = _context['catch'](1);
 
-              console.log(_context.t0);
-
               if (_context.t0.response) {
-                _context.next = 12;
+                _context.next = 11;
                 break;
               }
 
               return _context.abrupt('return', this.errHandle(_context.t0));
 
-            case 12:
+            case 11:
               res = _context.t0.response;
 
-            case 13:
+            case 12:
               return _context.abrupt('return', this.resultHandle(res));
 
-            case 14:
+            case 13:
             case 'end':
               return _context.stop();
           }
@@ -188,7 +196,7 @@ var Http = function () {
       }, _callee, this, [[1, 7]]);
     }));
 
-    function get(_x5) {
+    function get(_x6) {
       return _ref2.apply(this, arguments);
     }
 
@@ -205,54 +213,198 @@ var Http = function () {
           switch (_context2.prev = _context2.next) {
             case 0:
               res = void 0;
+              _context2.prev = 1;
+              _context2.next = 4;
+              return this.axios.post(this.processUrl(url), this.trim ? this.trimHandle(opt) : opt, conf);
 
-              if (this.trim) {
-                (0, _keys2.default)(opt).forEach(function (key) {
-                  var value = opt[key];
-                  typeof value.trim === 'function' ? opt[key] = value.trim() : '';
-                });
-              }
-              _context2.prev = 2;
-              _context2.next = 5;
-              return this.axios.post(this.processUrl(url), opt, conf);
-
-            case 5:
+            case 4:
               res = _context2.sent;
-              _context2.next = 14;
+              _context2.next = 12;
               break;
 
-            case 8:
-              _context2.prev = 8;
-              _context2.t0 = _context2['catch'](2);
-
-              console.log(_context2.t0);
+            case 7:
+              _context2.prev = 7;
+              _context2.t0 = _context2['catch'](1);
 
               if (_context2.t0.response) {
-                _context2.next = 13;
+                _context2.next = 11;
                 break;
               }
 
               return _context2.abrupt('return', this.errHandle(_context2.t0));
 
-            case 13:
+            case 11:
               res = _context2.t0.response;
 
-            case 14:
+            case 12:
               return _context2.abrupt('return', this.resultHandle(res));
 
-            case 15:
+            case 13:
             case 'end':
               return _context2.stop();
           }
         }
-      }, _callee2, this, [[2, 8]]);
+      }, _callee2, this, [[1, 7]]);
     }));
 
-    function post(_x8) {
+    function post(_x9) {
       return _ref3.apply(this, arguments);
     }
 
     return post;
+  }();
+
+  Http.prototype.put = function () {
+    var _ref4 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3(url) {
+      var opt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var conf = arguments[2];
+      var res;
+      return _regenerator2.default.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              res = void 0;
+              _context3.prev = 1;
+              _context3.next = 4;
+              return this.axios.put(this.processUrl(url), this.trim ? this.trimHandle(opt) : opt, conf);
+
+            case 4:
+              res = _context3.sent;
+              _context3.next = 12;
+              break;
+
+            case 7:
+              _context3.prev = 7;
+              _context3.t0 = _context3['catch'](1);
+
+              if (_context3.t0.response) {
+                _context3.next = 11;
+                break;
+              }
+
+              return _context3.abrupt('return', this.errHandle(_context3.t0));
+
+            case 11:
+              res = _context3.t0.response;
+
+            case 12:
+              return _context3.abrupt('return', this.resultHandle(res));
+
+            case 13:
+            case 'end':
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this, [[1, 7]]);
+    }));
+
+    function put(_x11) {
+      return _ref4.apply(this, arguments);
+    }
+
+    return put;
+  }();
+
+  Http.prototype.delete = function () {
+    var _ref5 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee4(url) {
+      var opt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var conf = arguments[2];
+      var res;
+      return _regenerator2.default.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              res = void 0;
+              _context4.prev = 1;
+              _context4.next = 4;
+              return this.axios.delete(this.processUrl(url), this.trim ? this.trimHandle(opt) : opt, conf);
+
+            case 4:
+              res = _context4.sent;
+              _context4.next = 12;
+              break;
+
+            case 7:
+              _context4.prev = 7;
+              _context4.t0 = _context4['catch'](1);
+
+              if (_context4.t0.response) {
+                _context4.next = 11;
+                break;
+              }
+
+              return _context4.abrupt('return', this.errHandle(_context4.t0));
+
+            case 11:
+              res = _context4.t0.response;
+
+            case 12:
+              return _context4.abrupt('return', this.resultHandle(res));
+
+            case 13:
+            case 'end':
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this, [[1, 7]]);
+    }));
+
+    function _delete(_x13) {
+      return _ref5.apply(this, arguments);
+    }
+
+    return _delete;
+  }();
+
+  Http.prototype.patch = function () {
+    var _ref6 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee5(url) {
+      var opt = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var conf = arguments[2];
+      var res;
+      return _regenerator2.default.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              res = void 0;
+              _context5.prev = 1;
+              _context5.next = 4;
+              return this.axios.patch(this.processUrl(url), this.trim ? this.trimHandle(opt) : opt, conf);
+
+            case 4:
+              res = _context5.sent;
+              _context5.next = 12;
+              break;
+
+            case 7:
+              _context5.prev = 7;
+              _context5.t0 = _context5['catch'](1);
+
+              if (_context5.t0.response) {
+                _context5.next = 11;
+                break;
+              }
+
+              return _context5.abrupt('return', this.errHandle(_context5.t0));
+
+            case 11:
+              res = _context5.t0.response;
+
+            case 12:
+              return _context5.abrupt('return', this.resultHandle(res));
+
+            case 13:
+            case 'end':
+              return _context5.stop();
+          }
+        }
+      }, _callee5, this, [[1, 7]]);
+    }));
+
+    function patch(_x15) {
+      return _ref6.apply(this, arguments);
+    }
+
+    return patch;
   }();
 
   return Http;

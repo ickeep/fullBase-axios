@@ -68,6 +68,14 @@ class Http {
     return newUrl
   }
 
+  trimHandle(opt = {}) {
+    Object.keys(opt).forEach((key) => {
+      let value = opt[key]
+      typeof value.trim === 'function' ? opt[key] = value.trim() : ''
+    })
+    return opt
+  }
+
   errHandle(e) {
     const tmpData = {}
     tmpData[this.format.errno] = 600
@@ -101,7 +109,6 @@ class Http {
     try {
       res = await this.axios.get(this.processUrl(url, opt), conf)
     } catch (e) {
-      console.log(e);
       if (!e.response) {
         return this.errHandle(e)
       }
@@ -112,16 +119,48 @@ class Http {
 
   async post(url, opt = {}, conf) {
     let res
-    if (this.trim) {
-      Object.keys(opt).forEach((key) => {
-        let value = opt[key]
-        typeof value.trim === 'function' ? opt[key] = value.trim() : ''
-      })
-    }
     try {
-      res = await this.axios.post(this.processUrl(url), opt, conf)
+      res = await this.axios.post(this.processUrl(url), this.trim ? this.trimHandle(opt) : opt, conf)
     } catch (e) {
-      console.log(e);
+      if (!e.response) {
+        return this.errHandle(e)
+      }
+      res = e.response
+    }
+    return this.resultHandle(res)
+  }
+
+  async put(url, opt = {}, conf) {
+    let res
+    try {
+      res = await this.axios.put(this.processUrl(url), this.trim ? this.trimHandle(opt) : opt, conf)
+    } catch (e) {
+      if (!e.response) {
+        return this.errHandle(e)
+      }
+      res = e.response
+    }
+    return this.resultHandle(res)
+  }
+
+  async delete(url, opt = {}, conf) {
+    let res
+    try {
+      res = await this.axios.delete(this.processUrl(url), this.trim ? this.trimHandle(opt) : opt, conf)
+    } catch (e) {
+      if (!e.response) {
+        return this.errHandle(e)
+      }
+      res = e.response
+    }
+    return this.resultHandle(res)
+  }
+
+  async patch(url, opt = {}, conf) {
+    let res
+    try {
+      res = await this.axios.patch(this.processUrl(url), this.trim ? this.trimHandle(opt) : opt, conf)
+    } catch (e) {
       if (!e.response) {
         return this.errHandle(e)
       }
