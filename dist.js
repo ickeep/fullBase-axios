@@ -33,13 +33,17 @@ var _axios2 = _interopRequireDefault(_axios);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Http = function () {
-  function Http(_ref) {
-    var _ref$conf = _ref.conf,
+  function Http() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        _ref$conf = _ref.conf,
         conf = _ref$conf === undefined ? {} : _ref$conf,
         _ref$format = _ref.format,
         format = _ref$format === undefined ? { errno: 'errno', errmsg: 'errmsg', token: 'token', data: 'data' } : _ref$format,
         _ref$hosts = _ref.hosts,
-        hosts = _ref$hosts === undefined ? {} : _ref$hosts;
+        hosts = _ref$hosts === undefined ? {} : _ref$hosts,
+        _ref$trim = _ref.trim,
+        trim = _ref$trim === undefined ? false : _ref$trim;
+
     (0, _classCallCheck3.default)(this, Http);
 
     var dfConf = {
@@ -55,6 +59,7 @@ var Http = function () {
     this.dataDf[format.errno] = '';
     this.dataDf[format.errmsg] = '';
     this.dataDf[format.data] = {};
+    this.trim = trim;
     this.axios = _axios2.default.create(this.conf);
   }
 
@@ -70,16 +75,19 @@ var Http = function () {
   };
 
   Http.prototype.serialize = function serialize(query) {
+    var _this = this;
+
     var apart = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '?';
 
     var urlText = '';
     if ((typeof query === 'undefined' ? 'undefined' : (0, _typeof3.default)(query)) === 'object') {
       (0, _keys2.default)(query).forEach(function (key) {
-        if (typeof query[key] !== 'undefined' && query[key] !== 'undefined' && query[key] !== '') {
+        var value = query[key](_this.trim && typeof value.trim === 'function') ? value = value.trim() : '';
+        if (typeof value !== 'undefined' && value !== 'undefined' && value !== '') {
           if (apart === '?') {
-            urlText += '&' + key + '=' + query[key];
+            urlText += '&' + key + '=' + value;
           } else {
-            urlText += '/' + key + '/' + query[key];
+            urlText += '/' + key + '/' + value;
           }
         }
       });
@@ -177,7 +185,7 @@ var Http = function () {
       }, _callee, this, [[1, 7]]);
     }));
 
-    function get(_x4) {
+    function get(_x5) {
       return _ref2.apply(this, arguments);
     }
 
@@ -194,41 +202,48 @@ var Http = function () {
           switch (_context2.prev = _context2.next) {
             case 0:
               res = void 0;
-              _context2.prev = 1;
-              _context2.next = 4;
+
+              if (this.trim) {
+                (0, _keys2.default)(opt).forEach(function (key) {
+                  var value = opt[key];
+                  opt[key] = typeof value.trim === 'function' ? value.trim() : value;
+                });
+              }
+              _context2.prev = 2;
+              _context2.next = 5;
               return this.axios.post(this.processUrl(url), opt, conf);
 
-            case 4:
+            case 5:
               res = _context2.sent;
-              _context2.next = 12;
+              _context2.next = 13;
               break;
 
-            case 7:
-              _context2.prev = 7;
-              _context2.t0 = _context2['catch'](1);
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2['catch'](2);
 
               if (_context2.t0.response) {
-                _context2.next = 11;
+                _context2.next = 12;
                 break;
               }
 
               return _context2.abrupt('return', this.errHandle(_context2.t0));
 
-            case 11:
+            case 12:
               res = _context2.t0.response;
 
-            case 12:
+            case 13:
               return _context2.abrupt('return', this.resultHandle(res));
 
-            case 13:
+            case 14:
             case 'end':
               return _context2.stop();
           }
         }
-      }, _callee2, this, [[1, 7]]);
+      }, _callee2, this, [[2, 8]]);
     }));
 
-    function post(_x7) {
+    function post(_x8) {
       return _ref3.apply(this, arguments);
     }
 

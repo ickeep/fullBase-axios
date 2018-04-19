@@ -1,7 +1,12 @@
 import Axios from 'axios'
 
 class Http {
-  constructor({ conf = {}, format = { errno: 'errno', errmsg: 'errmsg', token: 'token', data: 'data' }, hosts = {} }) {
+  constructor({
+                conf = {},
+                format = { errno: 'errno', errmsg: 'errmsg', token: 'token', data: 'data' },
+                hosts = {},
+                trim = false
+              } = {}) {
     const dfConf = {
       timeout: 30000,
       responseType: 'json',
@@ -15,6 +20,7 @@ class Http {
     this.dataDf[format.errno] = ''
     this.dataDf[format.errmsg] = ''
     this.dataDf[format.data] = {}
+    this.trim = trim
     this.axios = Axios.create(this.conf)
   }
 
@@ -33,11 +39,13 @@ class Http {
     let urlText = ''
     if (typeof query === 'object') {
       Object.keys(query).forEach((key) => {
-        if (typeof query[key] !== 'undefined' && query[key] !== 'undefined' && query[key] !== '') {
+        let value = query[key]
+        (this.trim && typeof value.trim === 'function') ? value = value.trim() : ''
+        if (typeof value !== 'undefined' && value !== 'undefined' && value !== '') {
           if (apart === '?') {
-            urlText += `&${key}=${query[key]}`
+            urlText += `&${key}=${value}`
           } else {
-            urlText += `/${key}/${query[key]}`
+            urlText += `/${key}/${value}`
           }
         }
       })
@@ -103,6 +111,12 @@ class Http {
 
   async post(url, opt = {}, conf) {
     let res
+    if (this.trim) {
+      Object.keys(opt).forEach((key) => {
+        let value = opt[key]
+        opt[key] = typeof value.trim === 'function' ? value.trim() : value
+      })
+    }
     try {
       res = await this.axios.post(this.processUrl(url), opt, conf)
     } catch (e) {
