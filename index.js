@@ -101,7 +101,7 @@ class Http {
     if (token) {
       tmpData[tokenKey] = token
     }
-    return Object.assign(this.dataDf, tmpData)
+    return Object.assign({}, this.dataDf, tmpData)
   }
 
   async get(url, opt = {}, conf = {}) {

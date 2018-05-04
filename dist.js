@@ -149,7 +149,7 @@ var Http = function () {
     if (token) {
       tmpData[tokenKey] = token;
     }
-    return (0, _assign2.default)(this.dataDf, tmpData);
+    return (0, _assign2.default)({}, this.dataDf, tmpData);
   };
 
   Http.prototype.get = function () {
