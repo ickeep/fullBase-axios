@@ -71,7 +71,7 @@ class Http {
   trimHandle(opt = {}) {
     Object.keys(opt).forEach((key) => {
       let value = opt[key]
-      typeof value.trim === 'function' ? opt[key] = value.trim() : ''
+      ;(value && typeof value.trim === 'function') ? opt[key] = value.trim() : ''
     })
     return opt
   }

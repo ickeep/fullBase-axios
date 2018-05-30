@@ -118,8 +118,7 @@ var Http = function () {
     var opt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     (0, _keys2.default)(opt).forEach(function (key) {
-      var value = opt[key];
-      typeof value.trim === 'function' ? opt[key] = value.trim() : '';
+      var value = opt[key];value && typeof value.trim === 'function' ? opt[key] = value.trim() : '';
     });
     return opt;
   };
