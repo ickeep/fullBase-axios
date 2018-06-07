@@ -127,7 +127,7 @@ var Http = function () {
     var tmpData = {};
     tmpData[this.format.errno] = 600;
     tmpData[this.format.errmsg] = e.message;
-    return (0, _assign2.default)(this.dataDf, tmpData);
+    return (0, _assign2.default)({}, this.dataDf, tmpData);
   };
 
   Http.prototype.resultHandle = function resultHandle(res) {
@@ -148,7 +148,7 @@ var Http = function () {
     if (token) {
       tmpData[tokenKey] = token;
     }
-    return (0, _assign2.default)({}, this.dataDf, tmpData);
+    return (0, _assign2.default)({}, this.dataDf, res, tmpData);
   };
 
   Http.prototype.get = function () {

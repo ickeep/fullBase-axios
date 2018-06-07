@@ -80,7 +80,7 @@ class Http {
     const tmpData = {}
     tmpData[this.format.errno] = 600
     tmpData[this.format.errmsg] = e.message
-    return Object.assign(this.dataDf, tmpData)
+    return Object.assign({}, this.dataDf, tmpData)
   }
 
   resultHandle(res) {
@@ -101,7 +101,7 @@ class Http {
     if (token) {
       tmpData[tokenKey] = token
     }
-    return Object.assign({}, this.dataDf, tmpData)
+    return Object.assign({}, this.dataDf, res, tmpData)
   }
 
   async get(url, opt = {}, conf = {}) {
